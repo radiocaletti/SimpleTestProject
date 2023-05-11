@@ -9,6 +9,7 @@ int function_f(int x){
 int main(void){
     printf("Execute.\n");
     int y = function_f(2);
+    printf("Return y.\n");
     printf("y = %i.\n", y);
     return 0;
 }
