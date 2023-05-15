@@ -12,16 +12,15 @@ u_int8_t bit_to_number(const char* const p) {
  {
     return 0;
  }
- char* q = p;
+ const char* q = p;
  u_int8_t numberOut = 0u;
  u_int16_t powOf2 = 1u;
  for(u_int8_t t = 0u; t < 8; t++) {
-    if(*q != '0' && *q != '1')
-    {
-        return 0;
-    }
     if(*q == '1') {
     numberOut += powOf2;
+    }
+    else if(*q != '0') {
+        return 0;
     }
     powOf2 *= 2;
     q++;
@@ -55,6 +54,16 @@ void test_method() {
 
   const char* const bitcode5 = NULL;
   testNumber = bit_to_number(bitcode5);
+  testNumberExpect = 0;
+  test_compare(&testNumber, &testNumberExpect);
+
+  const char* const bitcode6 = "0101ABCDDEWD";
+  testNumber = bit_to_number(bitcode6);
+  testNumberExpect = 0;
+  test_compare(&testNumber, &testNumberExpect);
+
+  const char* const bitcode7 = "110";
+  testNumber = bit_to_number(bitcode7);
   testNumberExpect = 0;
   test_compare(&testNumber, &testNumberExpect);
 
